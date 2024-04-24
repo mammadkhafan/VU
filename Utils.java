@@ -28,7 +28,7 @@ public class Utils {
 
     public static boolean isEmailValid(String email) {
         if (email.length()>18) return false;
-        String emailRegex = "^[a-zA-Z0-9_.+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        String emailRegex = "^[a-zA-Z0-9.]*@(?:[a-z0-9.-]+\\.)+[a-zA-Z]{1,4}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
