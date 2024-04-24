@@ -13,8 +13,22 @@ public class Utils {
         return false;
     }
 
+    public static boolean stuIsEduNumberValid(String number){
+        if (number.length() == 10 && number.matches("\\d+") ) return true;
+           return false;
+    }
+    public static boolean TeacherIsEduNumberValid(String number){
+        if (number.length() == 6 && number.matches("\\d+")) return true;
+        return false;
+    }
+    public static boolean adminIsEduNumberValid(String number){
+        if (number.length() == 4 && number.matches("\\d+")) return true;
+        return false;
+    }
+
     public static boolean isEmailValid(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        if (email.length()>18) return false;
+        String emailRegex = "^[a-zA-Z0-9.]*@(?:[a-z0-9.-]+\\.)+[a-zA-Z]{1,4}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
@@ -22,7 +36,7 @@ public class Utils {
 
     public static boolean isUsernameValid(String username) {
         if (username.matches("[a-zA-Z0-9]+"))
-            if (username.length() > 4) {
+            if ((username.length() > 4) && (username.length()<13) ) {
                 return true;
             }
         return false;
@@ -30,7 +44,7 @@ public class Utils {
 
     public static boolean isPasswordValid(String password) {
         if (password.matches("[a-zA-Z0-9]+")) {
-            if (password.length() > 7) return true;
+            if ((password.length() > 7) && (password.length() <13)) return true;
         }
         return false;
     }
