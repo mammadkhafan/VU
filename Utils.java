@@ -14,15 +14,15 @@ public class Utils {
     }
 
     public static boolean stuIsEduNumberValid(String number){
-        if (number.length() == 10 ) return true;
+        if (number.length() == 10 && number.matches("\\d+") ) return true;
            return false;
     }
     public static boolean TeacherIsEduNumberValid(String number){
-        if (number.length() == 6 ) return true;
+        if (number.length() == 6 && number.matches("\\d+")) return true;
         return false;
     }
     public static boolean adminIsEduNumberValid(String number){
-        if (number.length() == 4 ) return true;
+        if (number.length() == 4 && number.matches("\\d+")) return true;
         return false;
     }
 
