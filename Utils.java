@@ -13,8 +13,22 @@ public class Utils {
         return false;
     }
 
+    public static boolean stuIsEduNumberValid(String number){
+        if (number.length() == 10 ) return true;
+           return false;
+    }
+    public static boolean TeacherIsEduNumberValid(String number){
+        if (number.length() == 6 ) return true;
+        return false;
+    }
+    public static boolean adminIsEduNumberValid(String number){
+        if (number.length() == 4 ) return true;
+        return false;
+    }
+
     public static boolean isEmailValid(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        if (email.length()>18) return false;
+        String emailRegex = "^[a-zA-Z0-9_.+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
