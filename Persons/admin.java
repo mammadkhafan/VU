@@ -1,3 +1,5 @@
+package Persons;
+
 public class admin extends Person{
     @Override
     public boolean isEduNumberValid(String number) {
