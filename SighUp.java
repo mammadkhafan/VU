@@ -5,22 +5,58 @@ public class SighUp {
     public static Person[] persons;
     private static int persons_counter = 0;
 
+    private Person user;
+
     static {
         persons = new Person[10];
     }
 
 
-    public void signUpMessages(Person prs) {
+    public void signUpMessages() throws InterruptedException {
         String repeat_password;
         boolean sw = false;
         String errorMessage = "your input is invalid!";
         Scanner in = new Scanner(System.in);
+
+        System.out.println("---SIGNUP PAGE---");
+        Thread.sleep(1000);
         System.out.println("Enter these information...");
+
+        do {
+            System.out.println("Your role: ");
+            System.out.println("student = 1");
+            System.out.println("teacher = 2");
+            System.out.println("admin = 3");
+            int role = in.nextInt();
+            if (role == 1 || role == 2 || role == 3) {
+                sw = true;
+                switch (role) {
+                    case 1:
+                        user = new Student();
+                        break;
+
+                    case 2:
+                        user = new Teacher();
+                        break;
+
+                    case 3:
+                        user = new Admin();
+                        break;
+                
+                    default:
+                        break;
+                }
+            }
+            else
+                System.out.println(errorMessage);
+        } while (sw == false) ;
+        in.nextLine();  //fix the bug of get an extra line from user
+        sw = false;
 
         do {
             System.out.print("name: ");
 
-            if (prs.setName(in.nextLine()))
+            if (user.setName(in.nextLine()))
                 sw = true;
             else
                 System.out.println(errorMessage);
@@ -31,7 +67,7 @@ public class SighUp {
         
         do {
             System.out.print("last name: ");
-            if (prs.setLastName(in.nextLine()))
+            if (user.setLastName(in.nextLine()))
                 sw = true;
             else
                 System.out.println(errorMessage);
@@ -41,7 +77,7 @@ public class SighUp {
 
         do {
             System.out.print("username: ");
-            if (prs.setUsername(in.nextLine()))
+            if (user.setUsername(in.nextLine()))
                 sw = true;
             else
                 System.out.println(errorMessage);
@@ -51,7 +87,7 @@ public class SighUp {
 
         do {
             System.out.print("field: ");
-            if (prs.setField(in.nextLine()))
+            if (user.setField(in.nextLine()))
                 sw = true;
             else
                 System.out.println(errorMessage);
@@ -61,7 +97,7 @@ public class SighUp {
 
         do {
         System.out.print("ID number: ");
-            if (prs.setID_number(in.nextLine()))
+            if (user.setID_number(in.nextLine()))
                 sw = true;
             else
                 System.out.println(errorMessage);
@@ -71,7 +107,7 @@ public class SighUp {
 
         do {
             System.out.print("email: ");
-            if (prs.setEmail(in.nextLine()))
+            if (user.setEmail(in.nextLine()))
                 sw = true;
             else
                 System.out.println(errorMessage);
@@ -81,31 +117,16 @@ public class SighUp {
 
         do {
             System.out.print("phone number: ");
-            if (prs.setPhoneNumber(in.nextLine()))
+            if (user.setPhoneNumber(in.nextLine()))
                 sw = true;
             else
                 System.out.println(errorMessage);
         } while (sw == false) ;
         sw = false;
-
-
-        do {
-            System.out.println("role: ");
-            System.out.println("If you are student press 1");
-            System.out.println("teacher press 2");
-            System.out.println("admin press 3");
-            if (prs.setRole(in.nextInt())) 
-                sw = true;
-            else
-                System.out.println(errorMessage);
-        } while (sw == false) ;
-        in.nextLine();  //fix the bug of get an extra line from user
-        sw = false;
-
 
         do {
             System.out.print("password: ");
-            if (prs.setPassword(in.nextLine()))
+            if (user.setPassword(in.nextLine()))
                 sw = true;
             else
                 System.out.println(errorMessage);
@@ -116,29 +137,30 @@ public class SighUp {
         do {
             System.out.print("repeat password: ");
             repeat_password = in.nextLine();
-            if (Utils.isPasswordValid(repeat_password) && repeat_password.equals(prs.getPassword()))
+            if (Utils.isPasswordValid(repeat_password) && repeat_password.equals(user.getPassword()))
                 sw = true;
             else
                 System.out.println(errorMessage); 
         } while (sw == false) ;
 
-        addNewPerson(prs);
+        addNewPerson(user);
     }
 
-    private static void addNewPerson(Person prs) {
-        if (prs instanceof Student) {
-            persons[persons_counter] = (Student)prs;
+    private static void addNewPerson(Person user) throws InterruptedException {
+        if (user instanceof Student) {
+            persons[persons_counter] = (Student)user;
         }
-        else if (prs instanceof Teacher) {
-            persons[persons_counter] = (Teacher)prs;
+        else if (user instanceof Teacher) {
+            persons[persons_counter] = (Teacher)user;
         }
-        else if (prs instanceof Admin) {
-            persons[persons_counter] = (Admin)prs;
+        else if (user instanceof Admin) {
+            persons[persons_counter] = (Admin)user;
         }
 
         persons_counter++;
         System.out.println("--------------------------");
         System.out.println("Your account created successfuly");
         System.out.println("--------------------------");
+        Thread.sleep(1000);
     }
 }
