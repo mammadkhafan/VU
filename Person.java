@@ -35,11 +35,19 @@ public abstract class Person {
         taskCount++;
     }
 
-    public void printTasks() {
+    public void printTasks() throws InterruptedException {
         for (int i = 0; i < taskCount; i++) {
-            System.out.println("------------------");
             System.out.println(tasks[i].toString());
             System.out.println("------------------");
+            Thread.sleep(1000);
+        }
+    }
+
+    public void printInformation() throws InterruptedException {
+        for (int i = 0; i < UserPanel.getInformationAmount(); i++) {
+            System.out.println(UserPanel.information[i].toString());
+            System.out.println("------------------");
+            Thread.sleep(1000);
         }
     }
 

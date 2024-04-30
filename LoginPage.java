@@ -25,8 +25,10 @@ public class LoginPage {
                 user = new Teacher();
             else if (Utils.adminIsEduNumberValid(ID_number)) 
                 user = new Admin();
-            else 
+            else {
                 System.out.println(errorMessage);
+                sw = false;
+            }
             
         } while (sw == false);
         sw = false;
@@ -44,19 +46,26 @@ public class LoginPage {
         boolean show_message_sw = false;
         for (int i = 0; SighUp.persons[i] != null; i++) {
             if (ID_number.equals(SighUp.persons[i].getID_number()) && password.equals(SighUp.persons[i].getPassword())) {
+
                 System.out.println("--------------------------");
                 System.out.println("Wellcom " + SighUp.persons[i].getName() + " " + SighUp.persons[i].getLastName() + "!!!");
                 System.out.println("--------------------------");
+
                 Thread.sleep(1000);
                 show_message_sw = true;
+                break;
             }
         }
         if (show_message_sw == false) {
             System.out.println("Ther is no account with this information.you have to signup first...");
+        }  
+        else {
+            transferToUserPanel(user);
         }
+    }
 
-        user.addNewHomeWork("second seri", 12.01, 23.59);
-        user.printTasks();
-        
+    private void transferToUserPanel(Person person) throws InterruptedException {
+        UserPanel userPanel = new UserPanel(person);
+        userPanel.showPanelStatus();
     }
 }
