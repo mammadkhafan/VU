@@ -12,6 +12,11 @@ public abstract class Person {
     public final int admin_role = 3;
     private String password = "";
 
+    //constructor
+    public Person(String name) {
+        setName(name);
+    }
+
     //setters
     public boolean setName(String name) {
         if (Utils.isNameValid(name)) {
@@ -70,10 +75,12 @@ public abstract class Person {
     }
 
     public boolean setRole(int role) {
-        if (role == 1 || role == 2 || role == 3)
-                return true;
-            else
-                return false;
+        if (role == 1 || role == 2 || role == 3) {
+            this.role = role;
+            return true;
+        }      
+        else
+            return false;
     }
 
     public boolean setPassword(String password) {
