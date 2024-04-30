@@ -1,24 +1,30 @@
 import java.util.Scanner;
 
 public class LoginPage {
+
+    private Person user;
     
 
-    public void loginMessages(Person prs) {
+    public void loginMessages() throws InterruptedException {
         boolean sw = false;
         String errorMessage = "your input is invalid!";
         String ID_number;
         String password;
         Scanner in = new Scanner(System.in);
+
+        System.out.println("---LOGIN PAGE---");
+        Thread.sleep(1000);
         
         do {
             System.out.print("Enter your ID number: ");
             ID_number = in.next();
-            if (prs.getRole() == prs.student_role && Utils.stuIsEduNumberValid(ID_number)) 
-                sw = true;
-            else if (prs.getRole() == prs.teacher_role && Utils.TeacherIsEduNumberValid(ID_number)) 
-                sw = true;
-            else if (prs.getRole() == prs.admin_role && Utils.adminIsEduNumberValid(ID_number)) 
-                sw = true;
+            sw = true;
+            if (Utils.stuIsEduNumberValid(ID_number)) 
+                user = new Student();
+            else if (Utils.TeacherIsEduNumberValid(ID_number)) 
+                user = new Teacher();
+            else if (Utils.adminIsEduNumberValid(ID_number)) 
+                user = new Admin();
             else 
                 System.out.println(errorMessage);
             
@@ -41,6 +47,7 @@ public class LoginPage {
                 System.out.println("--------------------------");
                 System.out.println("Wellcom " + SighUp.persons[i].getName() + " " + SighUp.persons[i].getLastName() + "!!!");
                 System.out.println("--------------------------");
+                Thread.sleep(1000);
                 show_message_sw = true;
             }
         }
@@ -48,7 +55,8 @@ public class LoginPage {
             System.out.println("Ther is no account with this information.you have to signup first...");
         }
 
-
+        user.addNewHomeWork("second seri", 12.01, 23.59);
+        user.printTasks();
         
     }
 }

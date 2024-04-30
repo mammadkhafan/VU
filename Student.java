@@ -1,7 +1,7 @@
 public class Student extends Person{
-    public Student(String name) {
-        super(name);
-        setRole(1);
+    public Student() {
+        super();
+        setRole(student_role);
     }
 
     public boolean setID_number(String ID_number) {

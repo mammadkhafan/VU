@@ -1,9 +1,9 @@
 public class Main {
-    public static void main(String[] args) {
-        // LoginPage loginPg = new LoginPage();
-        // loginPg.loginMessage();
-
+    public static void main(String[] args) throws InterruptedException {
         SighUp signUp = new SighUp();
-        signUp.signUpMessage();
+        signUp.signUpMessages();
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.loginMessages();
     }
 }

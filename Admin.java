@@ -1,6 +1,7 @@
 public class Admin extends Person{
-    public Admin(String name) {
-        super(name);
+    public Admin() {
+        super();
+        setRole(admin_role);
     }
 
     public boolean setID_number(String ID_number) {

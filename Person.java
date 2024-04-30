@@ -6,16 +6,47 @@ public abstract class Person {
     protected String ID_number;
     private String email;
     private String phoneNumber;
+    private String password = "";
     private int role;
     protected final int student_role = 1;
-    public final int teacher_role = 2;
-    public final int admin_role = 3;
-    private String password = "";
+    protected final int teacher_role = 2;
+    protected final int admin_role = 3;
+    
+
+    public Task[] tasks;
+    public int taskCount = 0;
+    private final int MAX_TASK_NUMBER = 10;
+
+    public void addNewHomeWork(String subject, double setStart_time, double end_time) {
+        HomeWork homeWork = new HomeWork(subject, setStart_time, end_time);
+        tasks[taskCount] = homeWork;
+        taskCount++;
+    }
+
+    public void addNewQuiz(String subject, double setStart_time, double end_time) {
+        Quiz quiz = new Quiz(subject, setStart_time, end_time);
+        tasks[taskCount] = quiz;
+        taskCount++;
+    }
+
+    public void addNewExam(String subject, double setStart_time, double end_time) {
+        Exam exam = new Exam(subject, setStart_time, end_time);
+        tasks[taskCount] = exam;
+        taskCount++;
+    }
+
+    public void printTasks() {
+        for (int i = 0; i < taskCount; i++) {
+            System.out.println("------------------");
+            System.out.println(tasks[i].toString());
+            System.out.println("------------------");
+        }
+    }
 
     //constructor
-    public Person(String name) {
-        setName(name);
-    }
+    public Person() {
+        tasks = new Task[MAX_TASK_NUMBER];
+    } 
 
     //setters
     public boolean setName(String name) {

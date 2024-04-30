@@ -42,27 +42,12 @@ public abstract class Task {
         
     }
 
-    public Task addNewHomeWork(Person prs, String subject, double setStart_time, double end_time) {
-        if (prs instanceof Student) {
-            HomeWork homeWork = new HomeWork(subject, setStart_time, end_time);
-            return homeWork;
-        }
-        return null;
+    public String timeToString(double time) {
+        int houre = (int)time;
+        int minute = (int)time - houre;
+
+        return Integer.toString(houre) + ":" + Integer.toString(minute);
     }
 
-    public Task addNewQuiz(Person prs, String subject, double setStart_time, double end_time) {
-        if (prs instanceof Student) {
-            Quiz quiz = new Quiz(subject, setStart_time, end_time);
-            return quiz;
-        }
-        return null;
-    }
-
-    public Task addNewExam(Person prs, String subject, double setStart_time, double end_time) {
-        if (prs instanceof Student) {
-            Exam exam = new Exam(subject, setStart_time, end_time);
-            return exam;
-        }
-        return null;
-    }
+    public abstract String toString();
 }
