@@ -3,7 +3,7 @@ public abstract class Person {
     private String lastName;
     private String username;
     private String field;
-    private String ID_number;
+    protected String ID_number;
     private String email;
     private String phoneNumber;
     private int role;
