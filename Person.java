@@ -51,6 +51,12 @@ public abstract class Person {
         }
     }
 
+    public void printProfile() {
+        System.out.println("---PROFILE---");
+        System.out.println("ID_number: " + this.ID_number);
+        System.out.println("name :" + this.name);
+    }
+
     //constructor
     public Person() {
         tasks = new Task[MAX_TASK_NUMBER];
