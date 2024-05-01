@@ -1,5 +1,7 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Utils {
 
@@ -10,19 +12,6 @@ public class Utils {
                 return true;
             }
         }
-        return false;
-    }
-
-    public static boolean stuIsEduNumberValid(String number){
-        if (number.length() == 10 && number.matches("\\d+") ) return true;
-           return false;
-    }
-    public static boolean TeacherIsEduNumberValid(String number){
-        if (number.length() == 6 && number.matches("\\d+")) return true;
-        return false;
-    }
-    public static boolean adminIsEduNumberValid(String number){
-        if (number.length() == 4 && number.matches("\\d+")) return true;
         return false;
     }
 
@@ -50,5 +39,12 @@ public class Utils {
     }
     public static boolean isPhoneNumberValid(String phoneNumber) {
         return phoneNumber.matches("^09\\d{9}$");
+    }
+
+    public static void showTime(){
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedTime = currentTime.format(formatter);
+        System.out.println("Current system time : " + formattedTime);
     }
 }
